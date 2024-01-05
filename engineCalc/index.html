@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <title>排氣量計算器</title>
+</head>
+<body>
+<h1>排氣量計算器</h1>
+<label for="cylinders">汽缸數：</label>
+<input type="number" id="cylinders" min="1"><br><br>
+
+<label for="diameter">缸徑：</label>
+<input type="number" id="diameter" min="1"><span>mm</span><br><br>
+
+<label for="stroke">行程：</label>
+<input type="number" id="stroke" min="1"><span>mm</span><br><br>
+
+<button onclick="calculateEngineDisplacement()">計算排氣量</button><br><br>
+
+<p id="result"></p>
+
+<h2>快速選擇車款</h2>
+<h3>YAMAHA</h3>
+<button onclick="setCarSpecs(1, 52.4, 57.9)">5ML車系(勁戰1~5、GTR、RAY、BWSx、r)</button><br><br>
+<button onclick="setCarSpecs(1, 52, 58.7)">125B8R車系(六代戰、BWS2.0)</button><br><br>
+<button onclick="setCarSpecs(1, 58, 58.7)">Smax/Force/Force2.0/AUGUR/NAMX/R15v3、V4</button><br><br>
+
+<script src="calculateDisplacement.js"></script>
+</body>
+</html>
