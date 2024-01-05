@@ -9,7 +9,7 @@ function calculateEngineDisplacement() {
     }
 
     const displacement = (Math.PI * Math.pow(diameter / 2, 2) * stroke * cylinders) / 1000;
-    document.getElementById('result').innerHTML = `排氣量為 ${displacement.toFixed(2)} 毫升`;
+    document.getElementById('result').innerHTML = ` ${displacement.toFixed(2)} cc`;
 }
 
 function setCarSpecs(cylinders, diameter, stroke) {
@@ -18,4 +18,30 @@ function setCarSpecs(cylinders, diameter, stroke) {
     document.getElementById('stroke').value = stroke;
 
     calculateEngineDisplacement();
+}
+
+
+function clearInputs() {
+    $('#cylinders').val('');
+    $('#diameter').val('');
+    $('#stroke').val('');
+    $('#result').text('');
+}
+
+function newBoreUnit() {
+    const selectNewBore = parseInt(document.getElementById('selectNewBore').value);
+    if (selectNewBore === 0) {
+        $('#newBoreUnit').text('mm');
+    } else if (selectNewBore === 1) {
+        $('#newBoreUnit').text('條');
+    }
+}
+
+function newStrokeUnit() {
+    const selectNewStroke = parseInt(document.getElementById('selectNewStroke').value);
+    if (selectNewStroke === 0) {
+        $('#newStrokeUnit').text('條');
+    } else if (selectNewStroke === 1) {
+        $('#newStrokeUnit').text('mm');
+    }
 }

@@ -1,38 +1,88 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <title>排氣量計算器</title>
+    <title>排氣量計算機</title>
+    <link rel="icon" href="assets/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<h1>排氣量計算器</h1>
-<label for="cylinders">汽缸數：</label>
-<input type="number" id="cylinders" min="1" oninput="calculateEngineDisplacement()"><br><br>
+    <h1>排氣量計算器</h1>
+    <h4>Developed by timliucode</h4>
+    <label for="cylinders">缸數：</label>
+    <input type="number" id="cylinders" min="1" oninput="calculateEngineDisplacement()"><br>
 
-<label for="diameter">缸徑：</label>
-<input type="number" id="diameter" min="1" oninput="calculateEngineDisplacement()"><span>mm</span><br><br>
+    <label for="diameter">缸徑：</label>
+    <input type="number" id="diameter" min="1" step="0.1" oninput="calculateEngineDisplacement()"><span>mm</span><br>
 
-<label for="stroke">行程：</label>
-<input type="number" id="stroke" min="1" oninput="calculateEngineDisplacement()"><span>mm</span><br><br>    
+    <label for="stroke">行程：</label>
+    <input type="number" id="stroke" min="1" step="0.1" oninput="calculateEngineDisplacement()"><span>mm</span><br>
 
-<p id="result"></p>
 
-<h2>快速選擇車款</h2>
+    <h2>改裝目標</h2>
 
-<h3>YAMAHA</h3>
-<button onclick="setCarSpecs(1, 52.4, 57.9)">5ML車系(勁戰1~5、GTR、RAY、BWSx、r)</button><br><br>
-<button onclick="setCarSpecs(1, 52, 58.7)">125B8R車系(六代戰、BWS2.0)</button><br><br>
-<button onclick="setCarSpecs(1, 58, 58.7)">Smax/Force/Force2.0/AUGUR/NAMX/R15v3、V4</button><br><br>
+    <select id="selectNewBore" oninput="newBoreUnit()">
+        <option value="0" selected>缸徑</option>
+        <option value="1">搪缸</option>
+    </select>
 
-<h3>SYM</h3>
-<button onclick="setCarSpecs(1, 54, 54.4)">JETS/SR</button><br><br>
-<button onclick="setCarSpecs(1, 53, 56.5)">JETSL</button><br><br>
-<button onclick="setCarSpecs(1, 59, 57.8)">DRG/MMBCU/JETSL+</button><br><br>
+    <input type="number" id="NewDiameter" min="1" step="0.1" oninput="calculateEngineDisplacement()">
 
-<h3>KYMCO</h3>
-<button onclick="setCarSpecs(1, 54, 54.5)">RacingS 125</button><br><br>
-<button onclick="setCarSpecs(1, 59, 54.5)">RacingS 150/RCSmoto</button><br><br>
-<button onclick="setCarSpecs(1, 62, 58)">KRV車系</button><br><br>
+    <label id="newBoreUnit">mm</label>
+    <br>
 
-<script src="calculateDisplacement.js"></script>
+    <select id="selectNewStroke" oninput="newStrokeUnit()">
+        <option value="0" selected>拉條</option>
+        <option value="1">行程</option>
+    </select>
+
+    <input type="number" id="NewStroke" min="1" step="0.1" oninput="calculateEngineDisplacement()">
+
+    <label id="newStrokeUnit">條</label>
+    <br><br>
+
+
+    <p>排氣量：<span id="result"></p>
+    <p>改後排量：<span id="newResult"></p>
+    <p>相差倍率：<span id="difference"></p>
+    <p>相差百分比：<span id="differencePercent"></p>
+    <p>相差排氣量：<span id="differenceResult"></p>
+
+
+
+
+    <h2>快速選擇車款</h2>
+
+    <h3>YAMAHA</h3>
+    <button onclick="setCarSpecs(1, 52.4, 57.9)">5ML車系(勁戰1~5、GTR、RAY、BWSx、r)</button><br><br>
+    <button onclick="setCarSpecs(1, 52, 58.7)">125B8R車系(六代戰、BWS2.0)</button><br><br>
+    <button onclick="setCarSpecs(1, 58, 58.7)">Smax/Force/Force2.0/AUGUR/NAMX/R15v3、V4</button><br><br>
+
+    <h3>SYM</h3>
+    <button onclick="setCarSpecs(1, 54, 54.4)">JETS/SR</button><br><br>
+    <button onclick="setCarSpecs(1, 53, 56.5)">JETSL</button><br><br>
+    <button onclick="setCarSpecs(1, 59, 57.8)">DRG/MMBCU/JETSL+</button><br><br>
+
+    <h3>KYMCO</h3>
+    <button onclick="setCarSpecs(1, 54, 54.5)">RacingS 125</button><br><br>
+    <button onclick="setCarSpecs(1, 59, 54.5)">RacingS 150/RCSmoto</button><br><br>
+    <button onclick="setCarSpecs(1, 62, 58)">KRV車系</button><br><br>
+
+
+
+
+
+
+
+
+    <br><br>
+
+
+    <button onclick="clearInputs()">清除</button>
+
+    <script src="calculateDisplacement.js"></script>
 </body>
+
 </html>
