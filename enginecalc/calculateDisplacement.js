@@ -16,7 +16,11 @@ function calculate() {
 
     // 處理新的缸徑和行程
     if (newBoreUnit == 0) {
-        diameter = newDiameter || 0;
+        if (newDiameter == 0) {
+            diameter = diameter;
+        } else if (newDiameter > 0) {
+            diameter = newDiameter;
+        }
     } else if (newBoreUnit == 1) {
         diameter += newDiameter * 0.01 || 0;
     }
@@ -24,7 +28,11 @@ function calculate() {
     if (newStrokeUnit == 0) {
         stroke += newStroke * 0.01 || 0;
     } else if (newStrokeUnit == 1) {
-        stroke = newStroke || 0;
+        if (newStroke == 0) {
+            stroke = stroke;
+        } else if (newStroke > 0) {
+            stroke = newStroke;
+        }
     }
 
     var newBoreSquare = diameter * diameter;
