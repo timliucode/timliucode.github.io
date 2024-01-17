@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <title>排氣量計算機</title>
     <link rel="icon" href="assets/images/favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="calculateDisplacement.js"></script>
 </head>
 
 <body>
     <h1>排氣量計算器</h1>
-    <h4>Developed by timliucode</h4>
+    <h4>Developed by <a href="https://github.com/timliucode">timliucode</a></h4>
     <label for="cylinders">缸數：</label>
     <input type="number" id="cylinders" min="1" oninput="calculate()"><br>
 
@@ -42,8 +41,7 @@
     <input type="number" id="NewStroke" min="1" step="0.1" oninput="calculate()">
 
     <label id="newStrokeUnit">條</label>
-    <br><br>
-
+    <br>
 
     <p>排氣量：<span id="result"></p>
     <p>改後排量：<span id="newResult"></p>
@@ -51,39 +49,25 @@
     <p>相差百分比：<span id="differencePercent"></p>
     <p>相差排氣量：<span id="differenceResult"></p>
 
-
+    <button onclick="clearInputs()">清除</button>
 
 
     <h2>快速選擇車款</h2>
 
     <h3>YAMAHA</h3>
     <button onclick="setCarSpecs(1, 52.4, 57.9)">5ML車系(勁戰1~5、GTR、RAY、BWSx、r)</button><br><br>
-    <button onclick="setCarSpecs(1, 52, 58.7)">125B8R車系(六代戰、BWS2.0)</button><br><br>
-    <button onclick="setCarSpecs(1, 58, 58.7)">Smax/Force/Force2.0/AUGUR/NAMX/R15v3、V4</button><br><br>
+    <button onclick="setCarSpecs(1, 52, 58.7)">B8R125車系(六代戰、BWS2.0)</button><br><br>
+    <button onclick="setCarSpecs(1, 58, 58.7)">Smax/Force/Force2.0/AUGUR/NAMX/R15v3、V4</button>
 
     <h3>SYM</h3>
     <button onclick="setCarSpecs(1, 54, 54.4)">JETS/SR</button><br><br>
     <button onclick="setCarSpecs(1, 53, 56.5)">JETSL</button><br><br>
-    <button onclick="setCarSpecs(1, 59, 57.8)">DRG/MMBCU/JETSL+</button><br><br>
+    <button onclick="setCarSpecs(1, 59, 57.8)">DRG/MMBCU/JETSL+</button>
 
     <h3>KYMCO</h3>
     <button onclick="setCarSpecs(1, 54, 54.5)">RacingS 125</button><br><br>
     <button onclick="setCarSpecs(1, 59, 54.5)">RacingS 150/RCSmoto</button><br><br>
-    <button onclick="setCarSpecs(1, 62, 58)">KRV車系</button><br><br>
-
-
-
-
-
-
-
-
-    <br><br>
-
-
-    <button onclick="clearInputs()">清除</button>
-
-    <script src="calculateDisplacement.js"></script>
+    <button onclick="setCarSpecs(1, 62, 58)">KRV車系</button>
 </body>
 
 </html>
