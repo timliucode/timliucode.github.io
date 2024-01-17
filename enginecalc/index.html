@@ -45,16 +45,14 @@
 
     <label for="result">排氣量：　　</label><span id="result"></span><br>
     <label for="newResult">改後排量：　</label>
-    <input type="number" id="newResult" min="1" step="0.1" >cc<br>
+    <input type="number" id="newResult" min="1" step="0.1">cc<br>
 
     <label for="difference">相差倍率：　</label>
-    <input type="number" id="difference" min="1" step="0.1" oninput="calculate()">倍<br>
-
+    <span id="difference"></span><br>
     <label for="differencePercent">相差百分比：</label>
-    <input type="number" id="differencePercent" min="1" step="0.1" oninput="calculate()">%<br>
-
+    <span id="differencePercent"></span><br>
     <label for="differenceResult">相差排氣量：</label>
-    <input type="number" id="differenceResult" min="1" step="0.1" oninput="calculate()">cc<br><br>
+    <span id="differenceResult"></span><br><br>
 
     <button onclick="clearInputs()">清除</button>
     <button onclick="calculate(0)">計算排氣量</button>

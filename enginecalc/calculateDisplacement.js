@@ -43,9 +43,9 @@ function calculate(mode = 0) {
     // 顯示結果
     document.getElementById('result').innerText = cap.toFixed(2) + ' cc';
     document.getElementById('newResult').value = newCap.toFixed(2);
-    document.getElementById('difference').value = (newCap / cap).toFixed(2);
-    document.getElementById('differencePercent').value = ((newCap - cap) / cap * 100).toFixed(2);
-    document.getElementById('differenceResult').value = (newCap - cap).toFixed(2);
+    document.getElementById('difference').innerText = (newCap / cap).toFixed(2) + ' 倍';
+document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
+    document.getElementById('differenceResult').innerText = (newCap - cap).toFixed(2) + ' cc';
 
     if (mode == 1) {
         if (newStrokeUnit == 0) { // 新的行程單位為條
