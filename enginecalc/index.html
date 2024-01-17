@@ -2,6 +2,7 @@
 <html lang="zh-TW">
 
 <head>
+    <meta charset="UTF-8">
     <title>排氣量計算機</title>
     <link rel="icon" href="assets/images/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -12,13 +13,13 @@
     <h1>排氣量計算器</h1>
     <h4>Developed by timliucode</h4>
     <label for="cylinders">缸數：</label>
-    <input type="number" id="cylinders" min="1" oninput="calculateEngineDisplacement()"><br>
+    <input type="number" id="cylinders" min="1" oninput="calculate()"><br>
 
     <label for="diameter">缸徑：</label>
-    <input type="number" id="diameter" min="1" step="0.1" oninput="calculateEngineDisplacement()"><span>mm</span><br>
+    <input type="number" id="diameter" min="1" step="0.1" oninput="calculate()"><span>mm</span><br>
 
     <label for="stroke">行程：</label>
-    <input type="number" id="stroke" min="1" step="0.1" oninput="calculateEngineDisplacement()"><span>mm</span><br>
+    <input type="number" id="stroke" min="1" step="0.1" oninput="calculate()"><span>mm</span><br>
 
 
     <h2>改裝目標</h2>
@@ -28,7 +29,7 @@
         <option value="1">搪缸</option>
     </select>
 
-    <input type="number" id="NewDiameter" min="1" step="0.1" oninput="calculateEngineDisplacement()">
+    <input type="number" id="NewDiameter" min="1" step="0.1" oninput="calculate()">
 
     <label id="newBoreUnit">mm</label>
     <br>
@@ -38,7 +39,7 @@
         <option value="1">行程</option>
     </select>
 
-    <input type="number" id="NewStroke" min="1" step="0.1" oninput="calculateEngineDisplacement()">
+    <input type="number" id="NewStroke" min="1" step="0.1" oninput="calculate()">
 
     <label id="newStrokeUnit">條</label>
     <br><br>

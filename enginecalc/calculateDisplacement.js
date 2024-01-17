@@ -1,47 +1,67 @@
-function calculateEngineDisplacement() {
-    const cylinders = parseInt(document.getElementById('cylinders').value);
-    const diameter = parseFloat(document.getElementById('diameter').value);
-    const stroke = parseFloat(document.getElementById('stroke').value);
+function calculate() {
+    var cylinders = parseFloat(document.getElementById('cylinders').value) || 0;
+    var diameter = parseFloat(document.getElementById('diameter').value) || 0;
+    var stroke = parseFloat(document.getElementById('stroke').value) || 0;
 
-    if (isNaN(cylinders) || isNaN(diameter) || isNaN(stroke)) {
-        document.getElementById('result').innerHTML = '請輸入有效的數字';
-        return;
+    var newBoreUnit = document.getElementById('selectNewBore').value;
+    var newDiameter = parseFloat(document.getElementById('NewDiameter').value) || 0;
+
+    var newStrokeUnit = document.getElementById('selectNewStroke').value;
+    var newStroke = parseFloat(document.getElementById('NewStroke').value) || 0;
+
+    var math = 0.0007854; // 用於體積計算的數學常數
+
+    var boreSquare = diameter * diameter;
+    var cap = boreSquare * stroke * math * cylinders;
+
+    // 處理新的缸徑和行程
+    if (newBoreUnit == 0) {
+        diameter = newDiameter || 0;
+    } else if (newBoreUnit == 1) {
+        diameter += newDiameter * 0.01 || 0;
     }
 
-    const displacement = (Math.PI * Math.pow(diameter / 2, 2) * stroke * cylinders) / 1000;
-    document.getElementById('result').innerHTML = ` ${displacement.toFixed(2)} cc`;
+    if (newStrokeUnit == 0) {
+        stroke += newStroke * 0.01 || 0;
+    } else if (newStrokeUnit == 1) {
+        stroke = newStroke || 0;
+    }
+
+    var newBoreSquare = diameter * diameter;
+    var newCap = newBoreSquare * stroke * math * cylinders;
+
+    // 顯示結果
+    document.getElementById('result').innerText = cap.toFixed(2) + ' cc';
+    document.getElementById('newResult').innerText = newCap.toFixed(2) + ' cc';
+    document.getElementById('difference').innerText = (newCap / cap).toFixed(2) + ' 倍';
+    document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
+    document.getElementById('differenceResult').innerText = (newCap - cap).toFixed(2) + ' cc';
+}
+
+function newBoreUnit() {
+    var unit = document.getElementById('selectNewBore').value;
+    document.getElementById('newBoreUnit').innerText = unit == 0 ? 'mm' : '條';
+    calculate();
+}
+
+function newStrokeUnit() {
+    var unit = document.getElementById('selectNewStroke').value;
+    document.getElementById('newStrokeUnit').innerText = unit == 0 ? '條' : 'mm';
+    calculate();
 }
 
 function setCarSpecs(cylinders, diameter, stroke) {
     document.getElementById('cylinders').value = cylinders;
     document.getElementById('diameter').value = diameter;
     document.getElementById('stroke').value = stroke;
-
-    calculateEngineDisplacement();
+    calculate();
 }
-
 
 function clearInputs() {
-    $('#cylinders').val('');
-    $('#diameter').val('');
-    $('#stroke').val('');
-    $('#result').text('');
-}
-
-function newBoreUnit() {
-    const selectNewBore = parseInt(document.getElementById('selectNewBore').value);
-    if (selectNewBore === 0) {
-        $('#newBoreUnit').text('mm');
-    } else if (selectNewBore === 1) {
-        $('#newBoreUnit').text('條');
-    }
-}
-
-function newStrokeUnit() {
-    const selectNewStroke = parseInt(document.getElementById('selectNewStroke').value);
-    if (selectNewStroke === 0) {
-        $('#newStrokeUnit').text('條');
-    } else if (selectNewStroke === 1) {
-        $('#newStrokeUnit').text('mm');
-    }
+    document.getElementById('cylinders').value = '';
+    document.getElementById('diameter').value = '';
+    document.getElementById('stroke').value = '';
+    document.getElementById('NewDiameter').value = '';
+    document.getElementById('NewStroke').value = '';
+    calculate();
 }
