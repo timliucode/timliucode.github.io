@@ -41,15 +41,25 @@
     <input type="number" id="NewStroke" min="1" step="0.1" oninput="calculate()">
 
     <label id="newStrokeUnit">條</label>
-    <br>
+    <br><br>
 
-    <p>排氣量：<span id="result"></p>
-    <p>改後排量：<span id="newResult"></p>
-    <p>相差倍率：<span id="difference"></p>
-    <p>相差百分比：<span id="differencePercent"></p>
-    <p>相差排氣量：<span id="differenceResult"></p>
+    <label for="result">排氣量：　　</label><span id="result"></span><br>
+    <label for="newResult">改後排量：　</label>
+    <input type="number" id="newResult" min="1" step="0.1" >cc<br>
+
+    <label for="difference">相差倍率：　</label>
+    <input type="number" id="difference" min="1" step="0.1" oninput="calculate()">倍<br>
+
+    <label for="differencePercent">相差百分比：</label>
+    <input type="number" id="differencePercent" min="1" step="0.1" oninput="calculate()">%<br>
+
+    <label for="differenceResult">相差排氣量：</label>
+    <input type="number" id="differenceResult" min="1" step="0.1" oninput="calculate()">cc<br><br>
 
     <button onclick="clearInputs()">清除</button>
+    <button onclick="calculate(0)">計算排氣量</button>
+    <button onclick="calculate(1)">計算缸徑</button>
+    <button onclick="calculate(2)">計算行程</button><br><br>
 
 
     <h2>快速選擇車款</h2>

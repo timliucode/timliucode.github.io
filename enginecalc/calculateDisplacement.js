@@ -1,4 +1,4 @@
-function calculate() {
+function calculate(mode = 0) {
     var cylinders = parseFloat(document.getElementById('cylinders').value) || 0;
     var diameter = parseFloat(document.getElementById('diameter').value) || 0;
     var stroke = parseFloat(document.getElementById('stroke').value) || 0;
@@ -8,6 +8,8 @@ function calculate() {
 
     var newStrokeUnit = document.getElementById('selectNewStroke').value;
     var newStroke = parseFloat(document.getElementById('NewStroke').value) || 0;
+
+    var newResult = parseFloat(document.getElementById('newResult').value) || 0; // 新的排量
 
     var math = 0.0007854; // 用於體積計算的數學常數
 
@@ -40,10 +42,40 @@ function calculate() {
 
     // 顯示結果
     document.getElementById('result').innerText = cap.toFixed(2) + ' cc';
-    document.getElementById('newResult').innerText = newCap.toFixed(2) + ' cc';
-    document.getElementById('difference').innerText = (newCap / cap).toFixed(2) + ' 倍';
-    document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
-    document.getElementById('differenceResult').innerText = (newCap - cap).toFixed(2) + ' cc';
+    document.getElementById('newResult').value = newCap.toFixed(2);
+    document.getElementById('difference').value = (newCap / cap).toFixed(2);
+    document.getElementById('differencePercent').value = ((newCap - cap) / cap * 100).toFixed(2);
+    document.getElementById('differenceResult').value = (newCap - cap).toFixed(2);
+
+    if (mode == 1) {
+        if (newStrokeUnit == 0) { // 新的行程單位為條
+            stroke += newStroke * 0.01;
+        } else if (newStrokeUnit == 1) {
+            stroke = newStroke;
+        }
+
+        if (newBoreUnit == 0) { // 新的缸徑單位為mm
+            newDiameter = Math.sqrt((4 * newResult / cylinders) / (Math.PI * (stroke / 10))) * 10;
+            document.getElementById('NewDiameter').value = newDiameter.toFixed(2);
+        } else if (newBoreUnit == 1) { // 新的缸徑單位為條
+            newDiameter = (Math.sqrt((4 * newResult / cylinders) / (Math.PI * (stroke / 10))) * 10) - diameter;
+            document.getElementById('NewDiameter').value = newDiameter.toFixed(2);
+        }
+    } else if (mode == 2) {
+        if (newBoreUnit == 0) { // 新的缸徑單位為mm
+            diameter += newDiameter * 0.01;
+        } else if (newBoreUnit == 1) {
+            diameter = newDiameter;
+        }
+
+        if (newStrokeUnit == 0) { // 新的行程單位為條
+            newStroke = (4 * newResult / cylinders) / (Math.PI * Math.pow(newDiameter / 10, 2)) * 10 - stroke;
+            document.getElementById('NewStroke').value = newStroke.toFixed(2);
+        } else if (newStrokeUnit == 1) { // 新的行程單位為mm
+            newStroke = (4 * newResult / cylinders) / (Math.PI * Math.pow(newDiameter / 10, 2)) * 10;
+            document.getElementById('NewStroke').value = newStroke.toFixed(2);
+        }
+    }
 }
 
 function newBoreUnit() {
