@@ -44,8 +44,10 @@ function calculate(mode = 0) {
     document.getElementById('result').innerText = cap.toFixed(2) + ' cc';
     document.getElementById('newResult').value = newCap.toFixed(2);
     document.getElementById('difference').innerText = (newCap / cap).toFixed(2) + ' 倍';
-document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
+    document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
     document.getElementById('differenceResult').innerText = (newCap - cap).toFixed(2) + ' cc';
+    document.getElementById('newboremm').innerText = diameter.toFixed(2) + ' mm';
+    document.getElementById('newstrokemm').innerText = stroke.toFixed(2) + ' mm';
 
     if (mode == 1) {
         if (newStrokeUnit == 0) { // 新的行程單位為條
