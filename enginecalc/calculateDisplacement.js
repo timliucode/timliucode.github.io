@@ -40,11 +40,15 @@ function calculate(mode = 0) {
     var newBoreSquare = diameter * diameter;
     var newCap = newBoreSquare * stroke * math * cylinders;
 
+    var difference = (newCap / cap) || 0;
+    var differencePercent = ((newCap - cap) / cap * 100) || 0;
+
+
     // 顯示結果
     document.getElementById('result').innerText = cap.toFixed(2) + ' cc';
     document.getElementById('newResult').value = newCap.toFixed(2);
-    document.getElementById('difference').innerText = (newCap / cap).toFixed(2) + ' 倍';
-    document.getElementById('differencePercent').innerText = ((newCap - cap) / cap * 100).toFixed(2) + ' %';
+    document.getElementById('difference').innerText = difference.toFixed(2) + ' 倍';
+    document.getElementById('differencePercent').innerText = differencePercent.toFixed(2) + ' %';
     document.getElementById('differenceResult').innerText = (newCap - cap).toFixed(2) + ' cc';
     document.getElementById('newboremm').innerText = diameter.toFixed(2) + ' mm';
     document.getElementById('newstrokemm').innerText = stroke.toFixed(2) + ' mm';
